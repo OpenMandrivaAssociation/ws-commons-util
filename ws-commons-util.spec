@@ -26,7 +26,7 @@ Services Project.
 
 %package        javadoc
 Summary:        Javadoc for %{name}
-Group:          Development/Documentation
+Group:          Development/Java
 
 %description    javadoc
 %{summary}.
