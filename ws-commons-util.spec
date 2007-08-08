@@ -2,7 +2,7 @@
 
 Name:           ws-commons-util
 Version:        1.0.1
-Release:        %mkrel 1.1
+Release:        %mkrel 1.1.1
 Epoch:          0
 Summary:        Common utilities from the Apache Web Services Project 
 
@@ -38,7 +38,7 @@ Group:          Development/Java
 
 cd src/main/java
 find ./ -name \*.java | xargs %{javac}
-find ./ -name \*.class| xargs %{jar} cvf %{name}-%{version}.jar
+find ./ -name \*.class | sed -e 's|^\./||g' | xargs %{jar} cvf %{name}-%{version}.jar
 mkdir html
 find ./ -name \*.java | xargs %{javadoc} -d html
 
