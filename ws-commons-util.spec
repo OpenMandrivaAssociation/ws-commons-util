@@ -1,6 +1,6 @@
 Name:           ws-commons-util
 Version:        1.0.1
-Release:        %mkrel 6.1.0
+Release:        %mkrel 6.1.1
 Summary:        Common utilities from the Apache Web Services Project 
 
 Group:          Development/Java
@@ -28,8 +28,6 @@ BuildRequires:  junit
 BuildRequires:  java-javadoc
 
 BuildRequires:    java-gcj-compat-devel >= 1.0.31
-Requires(post):   java-gcj-compat >= 1.0.31
-Requires(postun): java-gcj-compat >= 1.0.31
 
 %description 
 This is version 1.0.1 of the common utilities from the Apache Web
