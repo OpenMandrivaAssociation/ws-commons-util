@@ -1,6 +1,6 @@
 Name:           ws-commons-util
 Version:        1.0.1
-Release:        %mkrel 6.1.1
+Release:        %mkrel 6.1.2
 Summary:        Common utilities from the Apache Web Services Project 
 
 Group:          Development/Java
@@ -13,7 +13,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 # https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=239123
 ExcludeArch:    ppc64
 
-BuildRequires:  jpackage-utils >= 1.5
+BuildRequires:  java-rpmbuild >= 1.5
 BuildRequires:  maven2
 BuildRequires:  maven2-plugin-jar
 BuildRequires:  maven2-plugin-compiler
