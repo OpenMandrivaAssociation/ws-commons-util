@@ -8,7 +8,6 @@ License:        Apache Software License
 URL:            http://apache.osuosl.org/ws/commons/util/
 Source0:        http://apache.osuosl.org/ws/commons/util/sources/ws-commons-util-1.0.1-src.tar.gz
 Patch0:         %{name}-addosgimanifest.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=239123
 ExcludeArch:    ppc64
