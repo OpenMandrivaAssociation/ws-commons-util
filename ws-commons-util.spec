@@ -2,7 +2,7 @@
 
 Name:           ws-commons-util
 Version:        1.0.1
-Release:        18
+Release:        20
 Summary:        Common utilities from the Apache Web Services Project
 
 Group:          System/Libraries
