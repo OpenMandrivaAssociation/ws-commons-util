@@ -1,32 +1,17 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:           ws-commons-util
 Version:        1.0.1
-Release:        27.0%{?dist}
+Release:        31.1
 Summary:        Common utilities from the Apache Web Services Project
-
-
+Group:          Development/Java
 License:        ASL 2.0
-URL:            http://apache.osuosl.org/ws/commons/util/
-Source0:        http://apache.osuosl.org/ws/commons/util/sources/ws-commons-util-1.0.1-src.tar.gz
+URL:            http://archive.apache.org/dist/ws/commons/util/
+Source0:        http://archive.apache.org/dist/ws/commons/util/sources/ws-commons-util-1.0.1-src.tar.gz
 Patch0:         %{name}-addosgimanifest.patch
-# Remove maven-eclipse-plugin from build dependencies to simplify the
-# dependency chain.
-Patch1:         %{name}-maven-eclipse-plugin.patch
 BuildArch:      noarch
 
-BuildRequires:  jpackage-utils >= 1.5
 BuildRequires:  maven-local
-BuildRequires:  maven-jar-plugin
-BuildRequires:  maven-compiler-plugin
-BuildRequires:  maven-install-plugin
-BuildRequires:  maven-source-plugin
-BuildRequires:  maven-assembly-plugin
-BuildRequires:  maven-javadoc-plugin
-BuildRequires:  maven-resources-plugin
-BuildRequires:  java-javadoc
-
-Requires:       java
-Requires:       jpackage-utils
+Requires:       java-headless
 
 %description
 This is version 1.0.1 of the common utilities from the Apache Web
@@ -35,43 +20,47 @@ Services Project.
 %package        javadoc
 Summary:        Javadoc for %{name}
 
-Requires:       jpackage-utils
-
 %description    javadoc
 %{summary}.
 
 %prep
 %setup -q -n %{name}-%{version}
 %patch0
-%patch1
+
+# Remove maven-eclipse-plugin from build dependencies to simplify the
+# dependency chain.
+%pom_remove_plugin :maven-eclipse-plugin
+
+%mvn_file : %{name}
+%mvn_alias org.apache.ws.commons:ws-commons-util org.apache.ws.commons.util:ws-commons-util
 
 %build
-mvn-rpmbuild install javadoc:javadoc
+%mvn_build
 
 %install
-install -dm 755 $RPM_BUILD_ROOT%{_javadir}
-install -pm 644 target/%{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
+%mvn_install
 
-# install maven pom file
-install -Dm 644 pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}.pom
-
-# ... and maven depmap
-%add_maven_depmap JPP-%{name}.pom %{name}.jar -a "org.apache.ws.commons.util:%{name}"
-
-install -dm 755 $RPM_BUILD_ROOT%{_javadocdir}/%{name}
-cp -pR target/site/apidocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}
-
-%files
+%files -f .mfiles
 %doc LICENSE.txt
-%{_javadir}/*.jar
-%{_mavenpomdir}/JPP-%{name}.pom
-%{_mavendepmapfragdir}/%{name}
 
-%files javadoc
+%files javadoc -f .mfiles-javadoc
 %doc LICENSE.txt
-%{_javadocdir}/%{name}
 
 %changelog
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.1-31
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Tue May 27 2014 Mat Booth <mat.booth@redhat.com> - 1.0.1-30
+- Re-add accidentally dropped alias
+
+* Tue May 27 2014 Mat Booth <mat.booth@redhat.com> - 1.0.1-29
+- Update for latest xmvn build guidelines
+- Drop unneccessary BRs
+- Update URLs
+
+* Tue Mar 04 2014 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1.0.1-28
+- Use Requires: java-headless rebuild (#1067528)
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.1-27
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
