@@ -1,7 +1,7 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:           ws-commons-util
 Version:        1.0.1
-Release:        31.1
+Release:        31.2
 Summary:        Common utilities from the Apache Web Services Project
 Group:          Development/Java
 License:        ASL 2.0
