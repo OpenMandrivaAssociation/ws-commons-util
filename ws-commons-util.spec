@@ -5,7 +5,7 @@ Release:        31.3
 Summary:        Common utilities from the Apache Web Services Project
 Group:          Development/Java
 License:        ASL 2.0
-URL:            http://archive.apache.org/dist/ws/commons/util/
+URL:            https://archive.apache.org/dist/ws/commons/util/
 Source0:        http://archive.apache.org/dist/ws/commons/util/sources/ws-commons-util-1.0.1-src.tar.gz
 Patch0:         %{name}-addosgimanifest.patch
 BuildArch:      noarch
